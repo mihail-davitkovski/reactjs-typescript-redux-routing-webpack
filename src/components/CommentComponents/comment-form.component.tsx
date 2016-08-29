@@ -9,9 +9,9 @@ export interface ICommentFormProps {
 
 export class CommentForm extends React.Component<ICommentFormProps, IComment>
 {
-      constructor(props: ICommentFormProps, state: ICommentState)
+      constructor(props: ICommentFormProps)
       {
-          super(props, state);
+          super(props);
           this.state = {author:"", text: ""};
       }
       
