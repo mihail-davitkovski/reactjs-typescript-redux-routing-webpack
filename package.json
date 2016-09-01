@@ -8,6 +8,7 @@
     "build": "webpack",
     "lite": "lite-server --port 10002",
     "start": "npm run lite",
+    "typings":"typings",
     "postinstall": "typings install"
   },
   "author": "",
