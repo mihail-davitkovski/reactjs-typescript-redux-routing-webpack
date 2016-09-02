@@ -7,6 +7,7 @@ export interface ICommentFormProps {
     onCommentSubmit(comment: IComment): void;
 };
 
+
 export class CommentForm extends React.Component<ICommentFormProps, IComment>
 {
       constructor(props: ICommentFormProps)
@@ -33,7 +34,7 @@ export class CommentForm extends React.Component<ICommentFormProps, IComment>
         
         this.setState({author: '', text: ''});
       }
-      
+
       render()
       {
           return (

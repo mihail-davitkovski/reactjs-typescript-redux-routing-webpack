@@ -5,6 +5,13 @@ import {Comment} from "./Comment";
 
 import {ICommentState} from "../../stores/CommentsStore";
 
+/*const Counter: React.StatelessComponent<CounterProps> = ({count, onClick}) => (
+    <div>
+        <h1>Counter below</h1>
+        <p onClick={onClick}>{count}</p>
+    </div>
+);*/
+
 export class CommentList extends React.Component<ICommentState,{}>
 {
     render()
