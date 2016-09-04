@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+﻿/*import * as React from "react";
 
 import {ProductCategoryRow} from "./ProductCategoryRow";
 
@@ -39,4 +39,4 @@ export class ProductTable extends React.Component<ISearchState,{}>{
     );
   }
     
-}
+}*/

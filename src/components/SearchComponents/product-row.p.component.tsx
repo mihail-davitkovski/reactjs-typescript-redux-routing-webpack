@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+﻿/*import * as React from "react";
 
 import {IProduct} from "../../stores/SearchStore";
 
@@ -22,4 +22,4 @@ export class ProductRow extends React.Component<ProductProps,{}>
         </tr>
         );
     }
-}
+}*/

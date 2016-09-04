@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+﻿/*import * as React from "react";
 
 import {SearchBar} from "./SearchBar";
 
@@ -55,4 +55,4 @@ export class FilterableProductTable extends React.Component<{}, ISearchState>
            
         );
     }
-}
+}*/

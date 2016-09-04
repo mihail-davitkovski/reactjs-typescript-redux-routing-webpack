@@ -1,4 +1,4 @@
-﻿import * as React from "react"; 
+﻿/*import * as React from "react"; 
 
 export interface SearchBarProps{
     onUserInput(value: string, checked: boolean):void;
@@ -42,4 +42,4 @@ export class SearchBar extends React.Component<SearchBarProps, {}>
             </form>
         );
     }
-}
+}*/

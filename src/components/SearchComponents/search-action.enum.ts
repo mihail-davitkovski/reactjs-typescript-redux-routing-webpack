@@ -1,5 +1,5 @@
-export enum Action
+/*export enum Action
 {
     FilterChange,
     GetAll
-}
+}*/

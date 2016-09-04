@@ -10,9 +10,9 @@ import { Store, createStore } from 'redux';
 
 import { Provider } from 'react-redux';
 
-import { CommentBox } from "./src/Components/CommentComponents/CommentBox";
+import { CommentBox } from "./src/components/CommentComponents/comment-box.component";
  
-import { FilterableProductTable } from "./src/Components/SearchComponents/FilterableProductTable";
+//import { FilterableProductTable } from "./src/Components/SearchComponents/FilterableProductTable";
 
 /*ReactDom.render((
   <ReactRouter.Router history={ReactRouter.browserHistory}>
@@ -25,8 +25,8 @@ import { FilterableProductTable } from "./src/Components/SearchComponents/Filter
 ReactDom.render(
   <Provider store={store}>
     <ReactRouter.Router history={history}>
-      <ReactRouter.Route path="/" component={CommentBoxApp}>
-        <ReactRouter.Route path="search" component={FilterableProductTable}/>
+      <ReactRouter.Route path="/" component={CommentBox}>
+        <ReactRouter.Route path="search" component={CommentBox}/>
         <ReactRouter.Route path="comments" component={CommentBox}/>
       </ReactRouter.Route>
     </ReactRouter.Router>

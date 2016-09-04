@@ -1,18 +1,29 @@
 ﻿
 import * as React from "react";
 
-import {Comment} from "./Comment";
+import {Comment} from "./comment.component";
 
-import {ICommentState} from "../../stores/CommentsStore";
+import { IComment } from "./model/IComment";
 
-/*const Counter: React.StatelessComponent<CounterProps> = ({count, onClick}) => (
-    <div>
-        <h1>Counter below</h1>
-        <p onClick={onClick}>{count}</p>
-    </div>
-);*/
+import { IComments } from "./model/IComments";
 
-export class CommentList extends React.Component<ICommentState,{}>
+export const CommentList: React.StatelessComponent<IComments> = (props) => {
+
+    let commentNodes = this.props.comments.map((comment:IComment)=> {
+        (
+                <Comment author={comment.author} text={comment.text}>
+                    {comment.text}
+                </Comment>
+            );
+        });
+        return (
+            <div className="commentList">
+                {commentNodes}
+            </div>
+        );
+};
+
+/*export class CommentList extends React.Component<ICommentState,{}>
 {
     render()
     {
@@ -29,4 +40,4 @@ export class CommentList extends React.Component<ICommentState,{}>
             </div>
         );
     }
-}
+}*/
