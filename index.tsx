@@ -12,6 +12,8 @@ import { Provider } from 'react-redux';
 
 import { CommentBox } from "./src/components/CommentComponents/comment-box.component";
  
+ let store = createStore();
+
 //import { FilterableProductTable } from "./src/Components/SearchComponents/FilterableProductTable";
 
 /*ReactDom.render((
