@@ -10,7 +10,7 @@ import { Store, createStore } from 'redux';
 
 import { Provider } from 'react-redux';
 
-import { CommentBox } from "./src/components/CommentComponents/comment-box.component";
+import { CommentBox } from "./app/components/CommentComponents/comment-box.component";
  
  let store = createStore();
 
