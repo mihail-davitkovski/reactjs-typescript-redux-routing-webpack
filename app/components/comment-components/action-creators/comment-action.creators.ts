@@ -1,8 +1,16 @@
-/*import {IComment} from "./IComment";
+import {IComment} from "../../../../app/components/comment-components/model/IComment";
 
+import {CommentActionTypes} from "./comment-action.types";
 
-export const addComment = (comment: IComment) => {
-  return {
-    type: 'ADD_TODO',
+const addComment = (comment: IComment) =>(
+  {
+    type: CommentActionTypes.ADD_COMMENT,
+    comment
   }
-}*/
+)
+
+const  getAllComments = () => (
+  {
+    type: CommentActionTypes.GET_ALL_COMMENTS,
+  }
+)
