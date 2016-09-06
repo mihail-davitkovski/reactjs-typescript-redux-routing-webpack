@@ -5,7 +5,9 @@ import {CommentActionTypes} from "./comment-action.types";
 const addComment = (comment: IComment) =>(
   {
     type: CommentActionTypes.ADD_COMMENT,
-    comment
+    data: {
+      comment:comment
+    }
   }
 )
 
