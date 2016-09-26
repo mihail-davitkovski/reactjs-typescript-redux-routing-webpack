@@ -1,6 +1,6 @@
 ﻿import * as React from "react";
 
-import {IComment} from "../../stores/CommentsStore";
+import {IComment} from "./model/IComment";
 
 
 export const Comment: React.StatelessComponent<IComment> = (props)=> (

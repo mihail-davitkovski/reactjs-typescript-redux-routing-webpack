@@ -1,12 +1,12 @@
-import {IComment} from "../../../../app/components/comment-components/model/IComment";
+import {IComment} from "../comments/model/IComment";
 
-import {CommentActionTypes} from "../action-creators/comment-action.types";
+import {CommentActionTypes} from "../comments/action-creators/comment-action.types";
 
 const initialCommentState = {
     comments: Array<IComment>()
 };
 
-const  commentsReducers = (state = initialCommentState, action:CommentActionTypes) => {
+const commentsReducers = (state = initialCommentState, action:CommentActionTypes) => {
   switch (action.type) {
     case CommentActionTypes.ADD_COMMENT:
       return Object.assign({}, state, {
@@ -16,3 +16,5 @@ const  commentsReducers = (state = initialCommentState, action:CommentActionType
       return state
   }
 }
+
+export default commentsReducers;

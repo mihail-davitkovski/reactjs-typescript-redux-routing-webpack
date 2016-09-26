@@ -1,6 +1,6 @@
 ﻿import * as React from "react"; 
 
-import {IComment, ICommentState} from "../../stores/CommentsStore";
+import {IComment} from "./model/IComment";
 
 
 export interface ICommentFormProps {

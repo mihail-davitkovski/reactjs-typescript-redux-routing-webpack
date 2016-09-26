@@ -6,13 +6,15 @@ import * as ReactDom from "react-dom";
 
 import  * as ReactRouter  from "react-router";
 
+import reducers from "./app/app.reducers";
+
 import { Store, createStore } from 'redux';
 
 import { Provider } from 'react-redux';
 
-import { CommentBox } from "./app/components/CommentComponents/comment-box.component";
+import { CommentBox } from "./app/comments/comment-box.component";
  
- let store = createStore();
+ let store = createStore(reducers);
 
 //import { FilterableProductTable } from "./src/Components/SearchComponents/FilterableProductTable";
 
