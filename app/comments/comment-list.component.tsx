@@ -23,21 +23,3 @@ export const CommentList: React.StatelessComponent<IComments> = (props) => {
         );
 };
 
-/*export class CommentList extends React.Component<ICommentState,{}>
-{
-    render()
-    {
-        let commentNodes = this.props.comments.map(function(comment) {
-            return (
-                <Comment author={comment.author}>
-                    {comment.text}
-                </Comment>
-            );
-        });
-        return(
-            <div className="commentList">
-               {commentNodes}
-            </div>
-        );
-    }
-}*/

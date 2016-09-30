@@ -55,9 +55,9 @@ var config = {
     }
 };
 
-//config.addVendor('react', node_dir + '/react/dist/react.min.js');
-//config.addVendor('react-dom', node_dir + '/react-dom/dist/react-dom.min.js');
-//config.addVendor('react-router', node_dir + '/react-router/umd/ReactRouter.min.js');
+config.addVendor('react', node_dir + '/react/dist/react.min.js');
+config.addVendor('react-dom', node_dir + '/react-dom/dist/react-dom.min.js');
+config.addVendor('react-router', node_dir + '/react-router/umd/ReactRouter.min.js');
 config.addVendor('dispatcher', node_dir + '/flux');
 config.addVendor('eventemitter', node_dir + '/eventemitter3');
 

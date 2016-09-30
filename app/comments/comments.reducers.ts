@@ -6,11 +6,11 @@ const initialCommentState = {
     comments: Array<IComment>()
 };
 
-const commentsReducers = (state = initialCommentState, action:CommentActionTypes) => {
+const commentsReducers = (state = initialCommentState, action:any) => {
   switch (action.type) {
     case CommentActionTypes.ADD_COMMENT:
       return Object.assign({}, state, {
-        visibilityFilter: action.filter
+        comments: action.data
       })
     default:
       return state

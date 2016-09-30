@@ -7,9 +7,9 @@ import {CommentList} from "./comment-list.component";
 
 import {CommentForm} from "./comment-form.component";
 
-import CommentsStore, {IComment, ICommentState} from "../../stores/CommentsStore";
+import {IComment} from "./model/IComment";
 
-import CommentActions  from "../../actions/CommentActions";
+import * as actionsCreators  from "./action-creators/comment-action.creators";
 
 import { IComments } from "./model/IComments";
 
@@ -23,7 +23,7 @@ const mapStateToProps = (state: IComments) => ({comments: state.comments});
   
 const mapDispatchToProps = (dispatch: any) => ({
     onCommentSubmit: (comment: IComment) => {
-      dispatch(comment);
+      dispatch(actionsCreators.addComment(comment));
     }
  });
 
