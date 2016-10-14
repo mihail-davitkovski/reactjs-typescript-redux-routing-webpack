@@ -4,8 +4,7 @@ import {IComment} from "../comments/model/IComment";
 
 import {CommentActionTypes} from "../comments/action-creators/comment-action.types";
 
-
-import  * as objectAssign from "object-assign";
+import objectAssign = require('object-assign');
 
 const initialCommentState = {
     comments: Array<IComment>()
@@ -14,7 +13,7 @@ const initialCommentState = {
 const commentsReducers = (state = initialCommentState, action:any) => {
   switch (action.type) {
     case CommentActionTypes.ADD_COMMENT:
-      return Object.assign({}, state, {
+      return objectAssign({}, state, {
           comments: [
             ...state.comments,
             action.data.comment

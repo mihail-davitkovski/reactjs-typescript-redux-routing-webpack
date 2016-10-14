@@ -1,5 +1,6 @@
 ﻿
 // Add WebPack to use the included CommonsChunkPlugin
+
 var webpack = require('webpack');
 var node_dir = __dirname + '/node_modules';
 
@@ -51,15 +52,17 @@ var config = {
     externals: {
         "react": "React",
         "react-dom": "ReactDOM",
-        "react-router": "ReactRouter"
+        "react-router": "ReactRouter",
+        "redux": "Redux",
+        "react-redux":"ReactRedux"
     }
 };
 
-config.addVendor('react', node_dir + '/react/dist/react.min.js');
+/*config.addVendor('react', node_dir + '/react/dist/react.min.js');
 config.addVendor('react-dom', node_dir + '/react-dom/dist/react-dom.min.js');
 config.addVendor('react-router', node_dir + '/react-router/umd/ReactRouter.min.js');
 config.addVendor('dispatcher', node_dir + '/flux');
-config.addVendor('eventemitter', node_dir + '/eventemitter3');
+config.addVendor('eventemitter', node_dir + '/eventemitter3');*/
 
 
 

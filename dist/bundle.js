@@ -9,13 +9,17 @@ webpackJsonp([0],[
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/// <reference path='./typings/index.d.ts'/>
 	"use strict";
 	var React = __webpack_require__(2);
 	var ReactDom = __webpack_require__(3);
 	var ReactRouter = __webpack_require__(4);
-	var CommentBox_1 = __webpack_require__(5);
-	var FilterableProductTable_1 = __webpack_require__(19);
-	ReactDom.render((React.createElement(ReactRouter.Router, {history: ReactRouter.browserHistory}, React.createElement(ReactRouter.Route, {path: "/", component: FilterableProductTable_1.FilterableProductTable}), React.createElement(ReactRouter.Route, {path: "search", component: FilterableProductTable_1.FilterableProductTable}), React.createElement(ReactRouter.Route, {path: "comments", component: CommentBox_1.CommentBox}))), document.getElementById('content'));
+	var redux_1 = __webpack_require__(5);
+	var react_redux_1 = __webpack_require__(6);
+	var app_reducers_1 = __webpack_require__(7);
+	var comment_box_component_1 = __webpack_require__(11);
+	var store = redux_1.createStore(app_reducers_1.default);
+	ReactDom.render(React.createElement(react_redux_1.Provider, {store: store}, React.createElement(ReactRouter.Router, {history: ReactRouter.broserHistory}, React.createElement(ReactRouter.Route, {path: "/", component: comment_box_component_1.CommentBox}, React.createElement(ReactRouter.Route, {path: "search", component: comment_box_component_1.CommentBox}), React.createElement(ReactRouter.Route, {path: "comments", component: comment_box_component_1.CommentBox})))), document.getElementById('content'));
 
 
 /***/ },
@@ -38,97 +42,230 @@ webpackJsonp([0],[
 
 /***/ },
 /* 5 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var React = __webpack_require__(2);
-	var CommentList_1 = __webpack_require__(6);
-	var CommentForm_1 = __webpack_require__(8);
-	var CommentsStore_1 = __webpack_require__(9);
-	var CommentActions_1 = __webpack_require__(18);
-	var CommentBox = (function (_super) {
-	    __extends(CommentBox, _super);
-	    function CommentBox(props, state) {
-	        _super.call(this, props, state);
-	        this.handleCommentSubmit = function (comment) {
-	            CommentActions_1.default.addComment(comment);
-	        };
-	        this.state = CommentsStore_1.default.state;
-	    }
-	    CommentBox.prototype.componentDidMount = function () {
-	        CommentsStore_1.default.addChangeListener(this.onChange.bind(this));
-	        CommentActions_1.default.getAll();
-	    };
-	    CommentBox.prototype.onChange = function () {
-	        this.setState(CommentsStore_1.default.state);
-	    };
-	    CommentBox.prototype.render = function () {
-	        return (React.createElement("div", {className: "commentBox"}, React.createElement("h1", null, "Comments"), React.createElement(CommentList_1.CommentList, {comments: this.state.comments}), React.createElement("br", null), React.createElement("br", null), React.createElement(CommentForm_1.CommentForm, {onCommentSubmit: this.handleCommentSubmit}), React.createElement("br", null), React.createElement("br", null), React.createElement("br", null), React.createElement("div", null, React.createElement("a", {href: "/search"}, React.createElement("b", null, "Go to Search page")))));
-	    };
-	    return CommentBox;
-	}(React.Component));
-	exports.CommentBox = CommentBox;
-
+	module.exports = Redux;
 
 /***/ },
 /* 6 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var React = __webpack_require__(2);
-	var Comment_1 = __webpack_require__(7);
-	var CommentList = (function (_super) {
-	    __extends(CommentList, _super);
-	    function CommentList() {
-	        _super.apply(this, arguments);
-	    }
-	    CommentList.prototype.render = function () {
-	        var commentNodes = this.props.comments.map(function (comment) {
-	            return (React.createElement(Comment_1.Comment, {author: comment.author}, comment.text));
-	        });
-	        return (React.createElement("div", {className: "commentList"}, commentNodes));
-	    };
-	    return CommentList;
-	}(React.Component));
-	exports.CommentList = CommentList;
-
+	module.exports = ReactRedux;
 
 /***/ },
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	var redux_1 = __webpack_require__(5);
+	var comments_reducers_1 = __webpack_require__(8);
+	var reducers = redux_1.combineReducers({
+	    commentsReducers: comments_reducers_1.default
+	});
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = reducers;
+
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var comment_action_types_1 = __webpack_require__(9);
+	var objectAssign = __webpack_require__(10);
+	var initialCommentState = {
+	    comments: Array()
+	};
+	var commentsReducers = function (state, action) {
+	    if (state === void 0) { state = initialCommentState; }
+	    switch (action.type) {
+	        case comment_action_types_1.CommentActionTypes.ADD_COMMENT:
+	            return objectAssign({}, state, {
+	                comments: state.comments.concat([
+	                    action.data.comment
+	                ])
+	            });
+	        default:
+	            return state;
+	    }
+	};
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = commentsReducers;
+
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	"use strict";
+	(function (CommentActionTypes) {
+	    CommentActionTypes[CommentActionTypes["GET_ALL_COMMENTS"] = 0] = "GET_ALL_COMMENTS";
+	    CommentActionTypes[CommentActionTypes["ADD_COMMENT"] = 1] = "ADD_COMMENT";
+	})(exports.CommentActionTypes || (exports.CommentActionTypes = {}));
+	var CommentActionTypes = exports.CommentActionTypes;
+
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	'use strict';
+	/* eslint-disable no-unused-vars */
+	var hasOwnProperty = Object.prototype.hasOwnProperty;
+	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+
+	function toObject(val) {
+		if (val === null || val === undefined) {
+			throw new TypeError('Object.assign cannot be called with null or undefined');
+		}
+
+		return Object(val);
+	}
+
+	function shouldUseNative() {
+		try {
+			if (!Object.assign) {
+				return false;
+			}
+
+			// Detect buggy property enumeration order in older V8 versions.
+
+			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+			var test1 = new String('abc');  // eslint-disable-line
+			test1[5] = 'de';
+			if (Object.getOwnPropertyNames(test1)[0] === '5') {
+				return false;
+			}
+
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test2 = {};
+			for (var i = 0; i < 10; i++) {
+				test2['_' + String.fromCharCode(i)] = i;
+			}
+			var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+				return test2[n];
+			});
+			if (order2.join('') !== '0123456789') {
+				return false;
+			}
+
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test3 = {};
+			'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+				test3[letter] = letter;
+			});
+			if (Object.keys(Object.assign({}, test3)).join('') !==
+					'abcdefghijklmnopqrst') {
+				return false;
+			}
+
+			return true;
+		} catch (e) {
+			// We don't expect any of the above to throw, but better to be safe.
+			return false;
+		}
+	}
+
+	module.exports = shouldUseNative() ? Object.assign : function (target, source) {
+		var from;
+		var to = toObject(target);
+		var symbols;
+
+		for (var s = 1; s < arguments.length; s++) {
+			from = Object(arguments[s]);
+
+			for (var key in from) {
+				if (hasOwnProperty.call(from, key)) {
+					to[key] = from[key];
+				}
+			}
+
+			if (Object.getOwnPropertySymbols) {
+				symbols = Object.getOwnPropertySymbols(from);
+				for (var i = 0; i < symbols.length; i++) {
+					if (propIsEnumerable.call(from, symbols[i])) {
+						to[symbols[i]] = from[symbols[i]];
+					}
+				}
+			}
+		}
+
+		return to;
+	};
+
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
 	var __extends = (this && this.__extends) || function (d, b) {
 	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var react_redux_1 = __webpack_require__(6);
 	var React = __webpack_require__(2);
-	var Comment = (function (_super) {
-	    __extends(Comment, _super);
-	    function Comment() {
-	        _super.apply(this, arguments);
+	var comment_list_component_1 = __webpack_require__(12);
+	var comment_form_component_1 = __webpack_require__(14);
+	var actionsCreators = __webpack_require__(15);
+	var mapStateToProps = function (state) { return ({ comments: state.comments }); };
+	var mapDispatchToProps = function (dispatch) { return ({
+	    onCommentSubmit: function (comment) {
+	        dispatch(actionsCreators.addComment(comment));
 	    }
-	    Comment.prototype.render = function () {
-	        return (React.createElement("div", {className: "comment"}, React.createElement("h2", {className: "commentAuthor"}, this.props.author), this.props.children));
+	}); };
+	var CommentBox = (function (_super) {
+	    __extends(CommentBox, _super);
+	    function CommentBox(props) {
+	        _super.call(this, props);
+	    }
+	    CommentBox.prototype.render = function () {
+	        var _this = this;
+	        return (React.createElement("div", {className: "commentBox"}, React.createElement("h1", null, "Comments"), React.createElement(comment_list_component_1.CommentList, {comments: this.props.comments}), React.createElement("br", null), React.createElement("br", null), React.createElement(comment_form_component_1.CommentForm, {onCommentSubmit: function () { return _this.props.onCommentSubmit; }}), React.createElement("br", null), React.createElement("br", null), React.createElement("br", null), React.createElement("div", null, React.createElement("a", {href: "/search"}, React.createElement("b", null, "Go to Search page")))));
 	    };
-	    return Comment;
+	    CommentBox = __decorate([
+	        react_redux_1.connect(mapStateToProps, mapDispatchToProps)
+	    ], CommentBox);
+	    return CommentBox;
 	}(React.Component));
-	exports.Comment = Comment;
+	exports.CommentBox = CommentBox;
 
 
 /***/ },
-/* 8 */
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var _this = this;
+	var React = __webpack_require__(2);
+	var comment_component_1 = __webpack_require__(13);
+	exports.CommentList = function (props) {
+	    var commentNodes = _this.props.comments.map(function (comment) {
+	        (React.createElement(comment_component_1.Comment, {author: comment.author, text: comment.text}, comment.text));
+	    });
+	    return (React.createElement("div", {className: "commentList"}, commentNodes));
+	};
+
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var _this = this;
+	var React = __webpack_require__(2);
+	exports.Comment = function (props) { return (React.createElement("div", {className: "comment"}, React.createElement("h2", {className: "commentAuthor"}, _this.props.author), _this.props.children)); };
+
+
+/***/ },
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -141,9 +278,9 @@ webpackJsonp([0],[
 	;
 	var CommentForm = (function (_super) {
 	    __extends(CommentForm, _super);
-	    function CommentForm(props, state) {
+	    function CommentForm(props) {
 	        var _this = this;
-	        _super.call(this, props, state);
+	        _super.call(this, props);
 	        this.handleAuthorChange = function (e) {
 	            _this.setState({ author: e.target.value, text: _this.state.text });
 	        };
@@ -168,454 +305,20 @@ webpackJsonp([0],[
 
 
 /***/ },
-/* 9 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var AppDispatcher_1 = __webpack_require__(10);
-	var BaseStore_1 = __webpack_require__(15);
-	var CommentAction_1 = __webpack_require__(17);
-	var CommentsStore = (function (_super) {
-	    __extends(CommentsStore, _super);
-	    function CommentsStore() {
-	        _super.call(this);
-	        this.registerActionHandlers();
-	        this.setDefaultState();
-	    }
-	    Object.defineProperty(CommentsStore.prototype, "state", {
-	        get: function () {
-	            return {
-	                comments: this._comments
-	            };
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    CommentsStore.prototype._initializeComments = function (comments) {
-	        this._comments = comments;
-	    };
-	    CommentsStore.prototype._addComment = function (comment) {
-	        this._comments.push(comment);
-	    };
-	    CommentsStore.prototype.setDefaultState = function () {
-	        this._comments = new Array();
-	    };
-	    CommentsStore.prototype.registerActionHandlers = function () {
-	        var _this = this;
-	        AppDispatcher_1.default.register(function (action) {
-	            switch (action.actionType) {
-	                case CommentAction_1.CommentAction.GET_ALL:
-	                    _this._initializeComments(action.comments);
-	                    _this.emitChange();
-	                    break;
-	                case CommentAction_1.CommentAction.ADD_COMMENT:
-	                    _this._addComment(action.comment);
-	                    _this.emitChange();
-	                    break;
-	            }
-	        });
-	    };
-	    return CommentsStore;
-	}(BaseStore_1.BaseStore));
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = new CommentsStore();
-
-
-/***/ },
-/* 10 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var flux_1 = __webpack_require__(11);
-	var AppDispatcher = new flux_1.Dispatcher();
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = AppDispatcher;
-
-
-/***/ },
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var EventEmitter = __webpack_require__(16);
-	var BaseStore = (function (_super) {
-	    __extends(BaseStore, _super);
-	    function BaseStore() {
-	        _super.apply(this, arguments);
-	        this.CHANGE_EVENT = "stateChanged";
+	var comment_action_types_1 = __webpack_require__(9);
+	exports.addComment = function (comment) { return ({
+	    type: comment_action_types_1.CommentActionTypes.ADD_COMMENT,
+	    data: {
+	        comment: comment
 	    }
-	    BaseStore.prototype.addChangeListener = function (callback) {
-	        this.on(this.CHANGE_EVENT.toString(), callback);
-	    };
-	    BaseStore.prototype.removeChangeListener = function (callback) {
-	        this.removeListener(this.CHANGE_EVENT, callback);
-	    };
-	    BaseStore.prototype.emitChange = function () {
-	        this.emit(this.CHANGE_EVENT);
-	    };
-	    return BaseStore;
-	}(EventEmitter));
-	exports.BaseStore = BaseStore;
-
-
-/***/ },
-/* 16 */,
-/* 17 */
-/***/ function(module, exports) {
-
-	"use strict";
-	(function (CommentAction) {
-	    CommentAction[CommentAction["GET_ALL"] = 0] = "GET_ALL";
-	    CommentAction[CommentAction["ADD_COMMENT"] = 1] = "ADD_COMMENT";
-	})(exports.CommentAction || (exports.CommentAction = {}));
-	var CommentAction = exports.CommentAction;
-
-
-/***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var CommentAction_1 = __webpack_require__(17);
-	var AppDispatcher_1 = __webpack_require__(10);
-	var CommentActions = (function () {
-	    function CommentActions() {
-	    }
-	    //API call should be implemented here
-	    CommentActions.getAll = function () {
-	        //API call should be implemented here
-	        var comments = [{ author: "Pete Hunt", text: "This is one comment" },
-	            { author: "Jordan Walke", text: "This is *another* comment" }];
-	        AppDispatcher_1.default.dispatch({
-	            actionType: CommentAction_1.CommentAction.GET_ALL,
-	            comments: comments
-	        });
-	    };
-	    CommentActions.addComment = function (comment) {
-	        AppDispatcher_1.default.dispatch({
-	            actionType: CommentAction_1.CommentAction.ADD_COMMENT,
-	            comment: comment
-	        });
-	    };
-	    return CommentActions;
-	}());
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = CommentActions;
-
-
-/***/ },
-/* 19 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var React = __webpack_require__(2);
-	var SearchBar_1 = __webpack_require__(20);
-	var ProductTable_1 = __webpack_require__(21);
-	var SearchActions_1 = __webpack_require__(24);
-	var SearchStore_1 = __webpack_require__(26);
-	var FilterableProductTable = (function (_super) {
-	    __extends(FilterableProductTable, _super);
-	    function FilterableProductTable(props, state) {
-	        _super.call(this, props, state);
-	        this.state = SearchStore_1.default.state;
-	    }
-	    FilterableProductTable.prototype.componentDidMount = function () {
-	        SearchStore_1.default.addChangeListener(this.onStateChange.bind(this));
-	        SearchActions_1.default.getAll();
-	    };
-	    FilterableProductTable.prototype.componentWillUnmount = function () {
-	        SearchStore_1.default.removeChangeListener(this.onStateChange);
-	    };
-	    FilterableProductTable.prototype.onStateChange = function () {
-	        this.setState(SearchStore_1.default.state);
-	    };
-	    FilterableProductTable.prototype.onFilterChange = function (searchValue, inStockOnly) {
-	        SearchActions_1.default.filterChange(searchValue, inStockOnly);
-	    };
-	    FilterableProductTable.prototype.render = function () {
-	        return (React.createElement("div", null, React.createElement(SearchBar_1.SearchBar, {filterText: this.state.filterText, inStockOnly: this.state.inStockOnly, onUserInput: this.onFilterChange}), React.createElement(ProductTable_1.ProductTable, {products: this.state.products, filterText: this.state.filterText, inStockOnly: this.state.inStockOnly}), React.createElement("br", null), React.createElement("br", null), React.createElement("br", null), React.createElement("div", null, React.createElement("a", {href: "/comments"}, React.createElement("b", null, "View Comments")))));
-	    };
-	    return FilterableProductTable;
-	}(React.Component));
-	exports.FilterableProductTable = FilterableProductTable;
-
-
-/***/ },
-/* 20 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var React = __webpack_require__(2);
-	var SearchBar = (function (_super) {
-	    __extends(SearchBar, _super);
-	    function SearchBar() {
-	        var _this = this;
-	        _super.apply(this, arguments);
-	        this._handleChange = function (e) {
-	            _this.props.onUserInput(_this.refs.filterTextInput.value, _this.refs.filterStockInput.checked);
-	        };
-	    }
-	    SearchBar.prototype.render = function () {
-	        return (React.createElement("form", null, React.createElement("input", {type: "text", placeholder: "Search...", value: this.props.filterText, onChange: this._handleChange, ref: "filterTextInput"}), React.createElement("p", null, React.createElement("input", {type: "checkbox", checked: this.props.inStockOnly, onChange: this._handleChange, ref: "filterStockInput"}), ' ', "Only show products in stock")));
-	    };
-	    return SearchBar;
-	}(React.Component));
-	exports.SearchBar = SearchBar;
-
-
-/***/ },
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var React = __webpack_require__(2);
-	var ProductCategoryRow_1 = __webpack_require__(22);
-	var ProductRow_1 = __webpack_require__(23);
-	var tableStyle = {
-	    display: "inline"
-	};
-	var ProductTable = (function (_super) {
-	    __extends(ProductTable, _super);
-	    function ProductTable() {
-	        _super.apply(this, arguments);
-	    }
-	    ProductTable.prototype.render = function () {
-	        var rows = [];
-	        var lastCategory = null;
-	        var props = this.props;
-	        this.props.products.forEach(function (product) {
-	            if (product.category !== lastCategory) {
-	                rows.push(React.createElement(ProductCategoryRow_1.ProductCategoryRow, {category: product.category, key: product.category}));
-	            }
-	            rows.push(React.createElement(ProductRow_1.ProductRow, {product: product, key: product.name}));
-	            lastCategory = product.category;
-	        });
-	        return (React.createElement("table", {style: tableStyle}, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "Name"), React.createElement("th", null, "Price"))), React.createElement("tbody", null, rows)));
-	    };
-	    return ProductTable;
-	}(React.Component));
-	exports.ProductTable = ProductTable;
-
-
-/***/ },
-/* 22 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var React = __webpack_require__(2);
-	var ProductCategoryRow = (function (_super) {
-	    __extends(ProductCategoryRow, _super);
-	    function ProductCategoryRow() {
-	        _super.apply(this, arguments);
-	    }
-	    ProductCategoryRow.prototype.render = function () {
-	        return (React.createElement("tr", null, React.createElement("th", {colSpan: "2"}, this.props.category)));
-	    };
-	    return ProductCategoryRow;
-	}(React.Component));
-	exports.ProductCategoryRow = ProductCategoryRow;
-
-
-/***/ },
-/* 23 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var React = __webpack_require__(2);
-	var ProductRow = (function (_super) {
-	    __extends(ProductRow, _super);
-	    function ProductRow() {
-	        _super.apply(this, arguments);
-	    }
-	    ProductRow.prototype.render = function () {
-	        var name = this.props.product.stocked ?
-	            this.props.product.name :
-	            React.createElement("span", {style: { color: 'red' }}, this.props.product.name);
-	        return (React.createElement("tr", null, React.createElement("td", null, name), React.createElement("td", null, this.props.product.price)));
-	    };
-	    return ProductRow;
-	}(React.Component));
-	exports.ProductRow = ProductRow;
-
-
-/***/ },
-/* 24 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var SearchAction_1 = __webpack_require__(25);
-	var AppDispatcher_1 = __webpack_require__(10);
-	var SearchActions = (function () {
-	    function SearchActions() {
-	    }
-	    //API call should be implemented here
-	    SearchActions.getAll = function () {
-	        var products = [
-	            { category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football' },
-	            { category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball' },
-	            { category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball' },
-	            { category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch' },
-	            { category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5' },
-	            { category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7' }
-	        ];
-	        AppDispatcher_1.default.dispatch({
-	            actionType: SearchAction_1.Action.GetAll,
-	            products: products
-	        });
-	    };
-	    SearchActions.filterChange = function (searchValue, inStockOnly) {
-	        AppDispatcher_1.default.dispatch({
-	            actionType: SearchAction_1.Action.FilterChange,
-	            searchValue: searchValue,
-	            inStockOnly: inStockOnly
-	        });
-	    };
-	    return SearchActions;
-	}());
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = SearchActions;
-
-
-/***/ },
-/* 25 */
-/***/ function(module, exports) {
-
-	"use strict";
-	(function (Action) {
-	    Action[Action["FilterChange"] = 0] = "FilterChange";
-	    Action[Action["GetAll"] = 1] = "GetAll";
-	})(exports.Action || (exports.Action = {}));
-	var Action = exports.Action;
-
-
-/***/ },
-/* 26 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var AppDispatcher_1 = __webpack_require__(10);
-	var BaseStore_1 = __webpack_require__(15);
-	var SearchAction_1 = __webpack_require__(25);
-	var SearchStore = (function (_super) {
-	    __extends(SearchStore, _super);
-	    function SearchStore() {
-	        _super.call(this);
-	        this.registerActionHandlers();
-	        this.setInitialState();
-	    }
-	    Object.defineProperty(SearchStore.prototype, "filterText", {
-	        get: function () {
-	            return this._filterText;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(SearchStore.prototype, "inStockOnly", {
-	        get: function () {
-	            return this._inStockOnly;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(SearchStore.prototype, "state", {
-	        get: function () {
-	            var state = {
-	                filterText: this._filterText,
-	                inStockOnly: this._inStockOnly,
-	                products: this._products
-	            };
-	            return state;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    SearchStore.prototype.setInitialState = function () {
-	        this._filterText = "";
-	        this._inStockOnly = false;
-	        this._products = [];
-	        this._cachedProducts = [];
-	    };
-	    SearchStore.prototype.filterProducts = function (searchValue, inStockOnly) {
-	        var _this = this;
-	        this._filterText = searchValue;
-	        this._inStockOnly = inStockOnly;
-	        this._products = [];
-	        this._cachedProducts.forEach(function (product) {
-	            if (product.name.indexOf(searchValue) === -1 || (!product.stocked && inStockOnly)) {
-	                return;
-	            }
-	            else {
-	                _this._products.push(product);
-	            }
-	        });
-	    };
-	    SearchStore.prototype.setProducts = function (products) {
-	        this._cachedProducts = products;
-	        this._products = products;
-	    };
-	    SearchStore.prototype.registerActionHandlers = function () {
-	        var _this = this;
-	        AppDispatcher_1.default.register(function (action) {
-	            switch (action.actionType) {
-	                case SearchAction_1.Action.GetAll:
-	                    _this.setProducts(action.products);
-	                    _this.emitChange();
-	                    break;
-	                case SearchAction_1.Action.FilterChange:
-	                    _this.filterProducts(action.searchValue, action.inStockOnly);
-	                    _this.emitChange();
-	                    break;
-	            }
-	        });
-	    };
-	    return SearchStore;
-	}(BaseStore_1.BaseStore));
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = new SearchStore();
+	}); };
+	exports.getAllComments = function () { return ({
+	    type: comment_action_types_1.CommentActionTypes.GET_ALL_COMMENTS
+	}); };
 
 
 /***/ }
