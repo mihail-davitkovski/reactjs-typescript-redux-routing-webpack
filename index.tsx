@@ -18,7 +18,7 @@ import { CommentBox } from "./app/comments/comment-box.component";
 
 ReactDom.render(
   <Provider store={store}>
-    <ReactRouter.Router history={ReactRouter.broserHistory}>
+    <ReactRouter.Router history={ReactRouter.browserHistory}>
       <ReactRouter.Route path="/" component={CommentBox}>
         <ReactRouter.Route path="search" component={CommentBox}/>
         <ReactRouter.Route path="comments" component={CommentBox}/>

@@ -17,19 +17,17 @@ var config = {
     entry: 
     {
         app: ['./index.tsx'],
-        vendors: ['dispatcher', 'eventemitter']
+        vendors: ['react', 'react-dom', 'react-router', 'redux', 'react-redux']
     },
-    // We add a plugin called CommonsChunkPlugin that will take the vendors chunk
-    // and create a vendors.js file. As you can see the first argument matches the key
-    // of the entry, "vendors"
-    plugins: [
-        new webpack.optimize.CommonsChunkPlugin('vendors', './dist/vendors.js')
-    ],
+
     output: {
-        filename: "./dist/bundle.js"
+        path:"./dist",
+        filename: "app.bundle.js",
     },
+
     module: {
         noParse: [],
+        //Loaders are doing transformations
         loaders: [
             {
                 //whenever we try to require something that ends with .tsx it should run the contents of that file through the ts-loader
@@ -40,6 +38,14 @@ var config = {
             }
         ]
     },
+
+    // We add a plugin called CommonsChunkPlugin that will take the vendors chunk
+    // and create a vendors.js file. As you can see the first argument matches the key
+    // of the entry, "vendors"
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin('vendors', 'app.vendors.js')
+    ],
+
     // The resolve.alias object takes require expressions
     // (require('react')) as keys and filepath to actual
     // module as values
@@ -49,13 +55,13 @@ var config = {
         extensions: ['', '.js', '.ts', '.tsx']
     },
 
-    externals: {
+    /*externals: {
         "react": "React",
         "react-dom": "ReactDOM",
         "react-router": "ReactRouter",
         "redux": "Redux",
         "react-redux":"ReactRedux"
-    }
+    }*/
 };
 
 /*config.addVendor('react', node_dir + '/react/dist/react.min.js');

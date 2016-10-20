@@ -4,11 +4,9 @@
   "description": "",
   "main": "bundle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "lite": "lite-server --port 10002",
-    "start": "npm run lite",
-    "typings":"typings",
+    "start": "webpack-dev-server --inline --hot",
+    "build": "webpack --config webpack.config.js",
+    "typings": "typings",
     "postinstall": "typings install"
   },
   "author": "",
@@ -16,17 +14,17 @@
   "dependencies": {
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
-    "react-redux": "^4.4.5",
     "react-router": "^2.7.0",
-    "redux": "^3.5.2"
+    "redux": "^3.5.2",
+    "react-redux": "^4.4.5",
+    "object-assign": "^4.1.0"
   },
   "devDependencies": {
-    "jsx-loader": "^0.13.2",
     "lite-server": "^2.2.2",
-    "object-assign": "^4.1.0",
     "source-map-loader": "^0.1.5",
     "ts-loader": "^0.8.2",
     "typescript": "^2.0.3",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.2"
   }
 }

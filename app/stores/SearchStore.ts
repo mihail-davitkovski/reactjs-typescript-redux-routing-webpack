@@ -1,4 +1,4 @@
-import AppDispatcher from "../dispatcher/AppDispatcher";
+/*import AppDispatcher from "../dispatcher/AppDispatcher";
 
 import  {BaseStore} from "./BaseStore";
 
@@ -105,7 +105,7 @@ class SearchStore extends BaseStore
 	}
 }
 
-export default new SearchStore();
+export default new SearchStore();*/
 
 
 

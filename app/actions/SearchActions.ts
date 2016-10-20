@@ -1,4 +1,4 @@
-import {Action} from "../enums/SearchAction";
+/*import {Action} from "../enums/SearchAction";
 
 import AppDispatcher from "../dispatcher/AppDispatcher";
 
@@ -30,5 +30,5 @@ export default class SearchActions
             inStockOnly:inStockOnly
         });
     }
-}
+}*/
 

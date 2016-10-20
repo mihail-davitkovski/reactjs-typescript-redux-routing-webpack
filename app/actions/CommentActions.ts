@@ -1,4 +1,4 @@
-import {CommentAction} from "../enums/CommentAction";
+/*import {CommentAction} from "../enums/CommentAction";
 
 import AppDispatcher from "../dispatcher/AppDispatcher";
 
@@ -27,5 +27,5 @@ export default class CommentActions
             comment: comment
         });
     }
-}
+}*/
 
