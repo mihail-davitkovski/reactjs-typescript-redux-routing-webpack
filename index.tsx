@@ -12,16 +12,16 @@ import { Provider } from 'react-redux';
 
 import reducers from "./app/app.reducers";
 
-import { CommentBox } from "./app/comments/comment-box.component";
+import { CommentBoxReduxMapper } from "./app/comments/comment-box.component";
  
  let store = createStore(reducers);
 
 ReactDom.render(
   <Provider store={store}>
     <ReactRouter.Router history={ReactRouter.browserHistory}>
-      <ReactRouter.Route path="/" component={CommentBox}>
-        <ReactRouter.Route path="search" component={CommentBox}/>
-        <ReactRouter.Route path="comments" component={CommentBox}/>
+      <ReactRouter.Route path="/" component={CommentBoxReduxMapper}>
+        <ReactRouter.Route path="search" component={CommentBoxReduxMapper}/>
+        <ReactRouter.Route path="comments" component={CommentBoxReduxMapper}/>
       </ReactRouter.Route>
     </ReactRouter.Router>
   </Provider>,

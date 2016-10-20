@@ -28,8 +28,8 @@ const mapDispatchToProps = (dispatch: any) => ({
  });
 
 
-@connect(mapStateToProps, mapDispatchToProps)
-export class CommentBox extends React.Component<CommentBoxProps, {}>
+//@connect(mapStateToProps, mapDispatchToProps)
+class CommentBox extends React.Component<CommentBoxProps, {}>
 {
     constructor(props: CommentBoxProps)
     {
@@ -52,5 +52,9 @@ export class CommentBox extends React.Component<CommentBoxProps, {}>
         );
     }
 }
+
+export const CommentBoxReduxMapper = connect(mapStateToProps, mapDispatchToProps)(CommentBox);
+
+
 
 

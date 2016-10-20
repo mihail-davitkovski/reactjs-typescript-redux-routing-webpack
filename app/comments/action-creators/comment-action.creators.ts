@@ -11,7 +11,7 @@ export const addComment = (comment: IComment) =>(
   }
 );
 
-export const  getAllComments = () => (
+export const getAllComments = () => (
 {
     type: CommentActionTypes.GET_ALL_COMMENTS
 });
