@@ -4,7 +4,7 @@ import * as React from "react";
 
 import * as ReactDom from "react-dom";
 
-import  * as ReactRouter  from "react-router";
+import  {Router, Route, browserHistory } from "react-router";
 
 import { Store, createStore } from 'redux';
 
@@ -16,14 +16,14 @@ import { CommentBoxReduxMapper } from "./app/comments/comment-box.component";
  
  let store = createStore(reducers);
 
-ReactDom.render(
+ReactDom.render(  
   <Provider store={store}>
-    <ReactRouter.Router history={ReactRouter.browserHistory}>
-      <ReactRouter.Route path="/" component={CommentBoxReduxMapper}>
-        <ReactRouter.Route path="search" component={CommentBoxReduxMapper}/>
-        <ReactRouter.Route path="comments" component={CommentBoxReduxMapper}/>
-      </ReactRouter.Route>
-    </ReactRouter.Router>
+    <Router history={browserHistory}>
+      <Route path="/" component={CommentBoxReduxMapper}>
+        <Route path="search" component={CommentBoxReduxMapper}/>
+        <Route path="comments" component={CommentBoxReduxMapper}/>
+      </Route>
+    </Router>
   </Provider>,
   document.getElementById('content')
 )

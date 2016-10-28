@@ -19,8 +19,11 @@ interface CommentBoxProps
     onCommentSubmit: any
 }
 
-const mapStateToProps = (state: IComments) => ({comments: state.comments});
-  
+const mapStateToProps = (state: any) => {
+ console.log(state);
+  return {comments: state.commentsReducers.comments}
+}
+    
 const mapDispatchToProps = (dispatch: any) => ({
     onCommentSubmit: (comment: IComment) => {
       dispatch(actionsCreators.addComment(comment));
@@ -33,6 +36,7 @@ class CommentBox extends React.Component<CommentBoxProps, {}>
 {
     constructor(props: CommentBoxProps)
     {
+        console.log(props.comments);
         super(props);
     }
     

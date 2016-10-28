@@ -11,7 +11,6 @@ const initialCommentState = {
 };
 
 const commentsReducers = (state = initialCommentState, action:any) => {
-  alert("vleze");
   switch (action.type) {
     case CommentActionTypes.ADD_COMMENT:
       return objectAssign({}, state, {
@@ -21,6 +20,7 @@ const commentsReducers = (state = initialCommentState, action:any) => {
           ]
       })
     default:
+     //console.log(state);
       return state
   }
 
