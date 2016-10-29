@@ -14,7 +14,7 @@ import reducers from "./app/app.reducers";
 
 import { CommentBoxReduxMapper } from "./app/comments/comment-box.component";
  
- let store = createStore(reducers);
+let store = createStore(reducers);
 
 ReactDom.render(  
   <Provider store={store}>

@@ -1,26 +1,22 @@
 
-
 import {IComment} from "../comments/model/IComment";
 
 import {CommentActionTypes} from "../comments/action-creators/comment-action.types";
 
 import objectAssign = require('object-assign');
 
-const initialCommentState = {
-    comments: Array<IComment>()
-};
+const comments = Array<IComment>();
 
-const commentsReducers = (state = initialCommentState, action:any) => {
+const commentsReducers = (state = comments, action:any) => {
   switch (action.type) {
     case CommentActionTypes.ADD_COMMENT:
       return objectAssign({}, state, {
           comments: [
-            ...state.comments,
+            ...state,
             action.data.comment
           ]
       })
     default:
-     //console.log(state);
       return state
   }
 

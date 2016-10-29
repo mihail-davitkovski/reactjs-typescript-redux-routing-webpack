@@ -20,8 +20,7 @@ interface CommentBoxProps
 }
 
 const mapStateToProps = (state: any) => {
- console.log(state);
-  return {comments: state.commentsReducers.comments}
+  return {comments: state.comments}
 }
     
 const mapDispatchToProps = (dispatch: any) => ({
@@ -36,7 +35,6 @@ class CommentBox extends React.Component<CommentBoxProps, {}>
 {
     constructor(props: CommentBoxProps)
     {
-        console.log(props.comments);
         super(props);
     }
     
