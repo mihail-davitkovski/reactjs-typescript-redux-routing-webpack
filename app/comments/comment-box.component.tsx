@@ -23,11 +23,13 @@ const mapStateToProps = (state: any) => {
   return {comments: state.comments}
 }
     
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: any) => {
+  return {
     onCommentSubmit: (comment: IComment) => {
       dispatch(actionsCreators.addComment(comment));
     }
- });
+  }
+}
 
 
 //@connect(mapStateToProps, mapDispatchToProps)
@@ -45,7 +47,7 @@ class CommentBox extends React.Component<CommentBoxProps, {}>
                 <h1>Comments</h1>
                 <CommentList comments={this.props.comments}/>
                 <br/><br/>
-                <CommentForm  onCommentSubmit={() => this.props.onCommentSubmit}/>
+                <CommentForm  onCommentSubmit={this.props.onCommentSubmit}/>
                 <br/><br/><br/>
                 <div>
                     <a href="/search"><b>Go to Search page</b></a>
