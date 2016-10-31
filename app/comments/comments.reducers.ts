@@ -10,13 +10,15 @@ const comments = Array<IComment>();
 const commentsReducers = (state = comments, action:any) => {
   switch (action.type) {
     case CommentActionTypes.ADD_COMMENT:
-      console.log(action.data.comment);
-      return objectAssign({}, state, 
+      let newState = objectAssign([], state, 
           [
             ...state,
             action.data.comment
           ]
+
+         
     )
+     return newState;
     default:
       return state
   }
