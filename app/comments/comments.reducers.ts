@@ -18,7 +18,7 @@ const commentsReducers = (state = comments, action:any) => {
 
          
     )
-     return newState;
+    return newState;
     default:
       return state
   }

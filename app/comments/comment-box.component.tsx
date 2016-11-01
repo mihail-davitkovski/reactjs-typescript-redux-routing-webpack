@@ -37,7 +37,6 @@ class CommentBox extends React.Component<CommentBoxProps, {}>
 {
     constructor(props: CommentBoxProps)
     {
-        console.log(props.comments);
         super(props);
     }
     

@@ -8,7 +8,6 @@ export const Comment: React.StatelessComponent<IComment> = (props)=> (
                 <h2 className="commentAuthor">
                     {props.author}
                 </h2>
-                {props.children}
+                {props.text}
         </div>
-
 );

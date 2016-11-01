@@ -8,14 +8,12 @@ import { IComment } from "./model/IComment";
 import { IComments } from "./model/IComments";
 
 export const CommentList: React.StatelessComponent<IComments> = (props) => {
-    console.log("dsgdf");
-    let commentNodes = props.comments.map((comment:IComment)=> {
-        (
-                <Comment author={comment.author} text={comment.text}>
+    let comments = props.comments;
+    let commentNodes = comments.map((comment:IComment, index:number) => 
+                <Comment author={comment.author} text={comment.text} key={index}>
                     {comment.text}
                 </Comment>
-            );
-        });
+        );
         return (
             <div className="commentList">
                 {commentNodes}
