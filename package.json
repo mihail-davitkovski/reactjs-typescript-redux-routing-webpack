@@ -5,22 +5,26 @@
   "main": "bundle.js",
   "scripts": {
     "start": "webpack-dev-server --inline --hot",
-    "build": "webpack --config webpack.config.js",
-    "typings": "typings",
-    "postinstall": "typings install"
+    "build": "webpack --config webpack.config.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "react": "^15.3.1",
-    "react-dom": "^15.3.1",
-    "react-router": "^2.7.0",
-    "redux": "^3.5.2",
-    "react-redux": "^4.4.5",
-    "object-assign": "^4.1.0"
+    "@types/react": "^0.14.52",
+    "@types/react-dom": "^0.14.19",
+    "@types/react-router": "^2.0.41",
+    "@types/redux": "^3.6.0",
+    "@types/react-redux": "^4.4.35",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "redux": "^3.6.0",
+    "react-router": "^2.8.1",
+    "react-redux": "^4.4.6"
   },
   "devDependencies": {
+    "@types/object-assign": "^4.0.30",
     "lite-server": "^2.2.2",
+    "object-assign": "^4.1.0",
     "source-map-loader": "^0.1.5",
     "ts-loader": "^0.8.2",
     "typescript": "^2.0.3",
