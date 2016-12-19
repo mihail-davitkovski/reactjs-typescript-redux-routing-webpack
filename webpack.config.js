@@ -33,7 +33,7 @@ var config = {
                 //whenever we try to require something that ends with .tsx it should run the contents of that file through the ts-loader
                 //tell webpack to use ts-loader for all *.tsx files
                 test:  /\.tsx?$/,
-                loader: 'ts-loader',
+                loader: 'awesome-typescript-loader',
                 exclude: ['/node_modules/', '/typings/', '/dist/']
             }
         ]
