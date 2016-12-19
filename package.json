@@ -4,31 +4,32 @@
   "description": "",
   "main": "bundle.js",
   "scripts": {
-    "start": "webpack-dev-server --inline --hot",
-    "build": "webpack --config webpack.config.js"
+    "start": "start http://localhost:8080/ & webpack-dev-server --inline --hot",
+    "build": "webpack --config webpack.config.js",
+    "preinstall": "npm install typescript -g && npm install webpack -g" 
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/react": "^0.14.52",
     "@types/react-dom": "^0.14.19",
+    "@types/react-redux": "^4.4.35",
     "@types/react-router": "^2.0.41",
     "@types/redux": "^3.6.0",
-    "@types/react-redux": "^4.4.35",
+    "@types/redux-thunk": "^2.1.32",
+    "@types/object-assign": "^4.0.30",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
-    "redux": "^3.6.0",
+    "react-redux": "^4.4.6",
     "react-router": "^2.8.1",
-    "react-redux": "^4.4.6"
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.1.0",
+    "object-assign": "^4.1.0"
   },
   "devDependencies": {
-    "@types/object-assign": "^4.0.30",
     "lite-server": "^2.2.2",
-    "object-assign": "^4.1.0",
+    "webpack-dev-server": "^1.16.2",
     "source-map-loader": "^0.1.5",
-    "ts-loader": "^0.8.2",
-    "typescript": "^2.0.3",
-    "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.16.2"
+    "ts-loader": "^0.8.2"
   }
 }
