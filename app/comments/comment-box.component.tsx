@@ -16,7 +16,8 @@ import { IComments } from "./model/IComments";
 interface CommentBoxProps
 {
     comments: Array<IComment>,
-    onCommentSubmit: any
+    onCommentSubmit: any,
+    loadComments: any
 }
 
 const mapStateToProps = (state: any) => {
@@ -27,6 +28,9 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     onCommentSubmit: (comment: IComment) => {
       dispatch(actionsCreators.addComment(comment));
+    },
+    loadComments:()=>{
+        dispatch(actionsCreators.getAllComments());
     }
   }
 }
@@ -39,7 +43,12 @@ class CommentBox extends React.Component<CommentBoxProps, {}>
     {
         super(props);
     }
-    
+
+    componentDidMount()
+    {
+        this.props.loadComments();
+    }
+
     render()
     {
         return (
