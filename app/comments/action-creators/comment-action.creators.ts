@@ -31,9 +31,7 @@ const receiveCommentsFinsished = (comments: Array<IComment>) => (
 export const getAllComments = () => {
   return (dispatch: any) => {
     return fetch("http://localhost:8080/comments.json")
-      .then((result) => {
-        console.log(result);
-        dispatch(receiveCommentsFinsished([{text:"text", author:"aurthor"}]))
-      });
+      .then(response => response.json())
+      .then(result => dispatch(receiveCommentsFinsished(result.comments)))
   }
 }
