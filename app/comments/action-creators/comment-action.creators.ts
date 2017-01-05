@@ -1,4 +1,4 @@
-import { IComment } from "../../comments/model/IComment";
+import { IComment } from "../model/IComment";
 
 import { CommentActionTypes } from "./comment-action.types";
 

@@ -1,8 +1,8 @@
 ﻿/*import * as React from "react";
 
-import {SearchBar} from "./SearchBar";
+import {SearchBar} from "./search-bar.component";
 
-import {ProductTable} from "./ProductTable";
+import {ProductTable} from "./product-table.component";
 
 import SearchActions from "../../actions/SearchActions";
 
