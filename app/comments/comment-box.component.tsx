@@ -13,8 +13,8 @@ import * as actionsCreators from "./action-creators/comment-action.creators";
 
 interface CommentBoxProps {
     comments: Array<IComment>,
-    onCommentSubmit: any,
-    loadComments: any
+    onCommentSubmit(comment: IComment): void,
+    loadComments(): void
 }
 
 const mapStateToProps = (state: any) => {

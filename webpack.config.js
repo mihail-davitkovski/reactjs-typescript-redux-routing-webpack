@@ -16,7 +16,7 @@ var config = {
     // specify that react should be part of that chunk
     entry: 
     {
-        app: ['./index.tsx'],
+        app: './index.tsx',
         vendors: ['react', 'react-dom', 'react-router', 'redux', 'react-redux']
     },
 
