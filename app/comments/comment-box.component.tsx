@@ -17,7 +17,7 @@ interface CommentBoxProps {
     loadComments(): void
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: {comments:Array<IComment>}) => {
     return { comments: state.comments }
 }
 
