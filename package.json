@@ -4,9 +4,10 @@
   "description": "",
   "main": "bundle.js",
   "scripts": {
-    "start": "start http://localhost:8080/ & webpack-dev-server --inline --hot",
+    "start": "npm run lite",
     "build": "webpack --config webpack.config.js",
-    "preinstall": "npm install webpack -g"
+    "preinstall": "npm install webpack -g",
+    "lite": "lite-server"
   },
   "author": "",
   "license": "ISC",
