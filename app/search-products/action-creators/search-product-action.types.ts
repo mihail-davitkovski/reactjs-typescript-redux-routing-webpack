@@ -1,0 +1,6 @@
+export enum SearchProductActionType {
+    FILTER_CHANGED,
+    GET_ALL_PRODUCTS,
+    REQUEST_PRODUCTS_STARTED,
+    RECEIVE_PRODUCTS_FINISHED
+}

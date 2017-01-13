@@ -11,10 +11,11 @@ import { Provider } from 'react-redux';
 
 import thunkMiddleware from "redux-thunk";
 
-
 import reducers from "./app/app.reducers";
 
 import { CommentBoxReduxMapper } from "./app/comments/comment-box.component";
+
+import { FilterableProductTableBoxReduxMapper } from "./app/search-products/filterable-product-table-box.component";
  
 let store = createStore(reducers, applyMiddleware(
   thunkMiddleware
@@ -23,10 +24,9 @@ let store = createStore(reducers, applyMiddleware(
 ReactDom.render(  
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={CommentBoxReduxMapper}>
-        <Route path="search" component={CommentBoxReduxMapper}/>
-        <Route path="comments" component={CommentBoxReduxMapper}/>
-      </Route>
+      <Route path="/" component={CommentBoxReduxMapper}/>
+      <Route path="search" component={FilterableProductTableBoxReduxMapper}/>
+      <Route path="comments" component={CommentBoxReduxMapper}/>
     </Router>
   </Provider>,
   document.getElementById('content')
