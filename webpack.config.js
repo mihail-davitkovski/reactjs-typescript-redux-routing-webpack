@@ -34,7 +34,7 @@ var config = {
                 //tell webpack to use ts-loader for all *.tsx files
                 test:  /\.tsx?$/,
                 loader: 'awesome-typescript-loader',
-                exclude: ['/node_modules/', '/typings/', '/dist/']
+                exclude: ['/node_modules/', '/dist/']
             }
         ]
     },
