@@ -13,7 +13,7 @@ import * as actionsCreators from "./action-creators/comment-action.creators";
 
 interface CommentBoxProps {
     comments: Array<IComment>,
-    onCommentSubmit(comment: IComment): void,
+    addComment(comment: IComment): void,
     loadComments(): void
 }
 
@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch: any) => {
         loadComments: () => {
             dispatch(actionsCreators.getAllComments());
         },
-        onCommentSubmit: (comment: IComment) => {
+        addComment: (comment: IComment) => {
             dispatch(actionsCreators.addComment(comment));
         }
     }
@@ -34,9 +34,9 @@ const mapDispatchToProps = (dispatch: any) => {
 
 
 //@connect(mapStateToProps, mapDispatchToProps)
-class CommentBox extends React.Component<CommentBoxProps, void>
+export class CommentBox extends React.Component<CommentBoxProps>
 {
-    constructor(props: CommentBoxProps) {
+     constructor(props: CommentBoxProps) {
         super(props);
     }
 
@@ -50,7 +50,7 @@ class CommentBox extends React.Component<CommentBoxProps, void>
                 <h1>Comments</h1>
                 <CommentList comments={this.props.comments} />
                 <br /><br />
-                <CommentForm onCommentSubmit={this.props.onCommentSubmit} />
+                <CommentForm onCommentSubmit={this.props.addComment} />
                 <br /><br /><br />
                 <div>
                     <a href="/search"><b>Go to Search page</b></a>

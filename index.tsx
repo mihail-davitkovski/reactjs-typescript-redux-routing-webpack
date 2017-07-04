@@ -24,7 +24,7 @@ let store = createStore(reducers, applyMiddleware(
 ReactDom.render(  
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={CommentBoxReduxMapper}/>
+      <Route path="/"  component={CommentBoxReduxMapper}/>
       <Route path="search" component={FilterableProductTableBoxReduxMapper}/>
       <Route path="comments" component={CommentBoxReduxMapper}/>
     </Router>

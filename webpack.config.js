@@ -1,19 +1,10 @@
 ﻿
 // Add WebPack to use the included CommonsChunkPlugin
-
 var webpack = require('webpack');
 var node_dir = __dirname + '/node_modules';
+const path = require('path');
 
 var config = {
-    addVendor: function (name, path) {
-        //bascially tell WebPack when require(‘name’) 
-        //is resolved in the code, 
-        //it will use the file located in "path"
-        this.resolve.alias[name] = path;
-        this.module.noParse.push(new RegExp(path));
-    },
-    // We split the entry into two specific chunks. Our app and vendors. Vendors
-    // specify that react should be part of that chunk
     entry: 
     {
         app: './index.tsx',
@@ -21,12 +12,11 @@ var config = {
     },
 
     output: {
-        path:"./dist",
+        path: path.resolve(__dirname, 'dist'),
         filename: "app.bundle.js",
     },
 
     module: {
-        noParse: [],
         //Loaders are doing transformations
         loaders: [
             {
@@ -34,7 +24,7 @@ var config = {
                 //tell webpack to use ts-loader for all *.tsx files
                 test:  /\.tsx?$/,
                 loader: 'awesome-typescript-loader',
-                exclude: ['/node_modules/', '/dist/']
+                exclude: ['/node_modules/']
             }
         ]
     },
@@ -43,7 +33,7 @@ var config = {
     // and create a vendors.js file. As you can see the first argument matches the key
     // of the entry, "vendors"
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('vendors', 'app.vendors.js')
+        new webpack.optimize.CommonsChunkPlugin({name:'vendors', filename:'app.vendors.js'})
     ],
 
     // The resolve.alias object takes require expressions
@@ -52,8 +42,8 @@ var config = {
     resolve: {
         alias: {},
         // you can now require('file') instead of require('file.tsx')
-        extensions: ['', '.js', '.ts', '.tsx']
-    },
+        extensions: ['.js', '.ts', '.tsx']
+    }
 
     /*externals: {
         "react": "React",
